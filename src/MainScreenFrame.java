@@ -59,9 +59,21 @@ public class MainScreenFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource()==Button_addArticle){
 
+                    new AddArtikel();
 
 
 
+                }
+            }
+        });
+
+        Button_article.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource()==Button_article){
+
+
+                    new LernenArtikel();
                 }
             }
         });
