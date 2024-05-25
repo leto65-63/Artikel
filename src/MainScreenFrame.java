@@ -2,9 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-public class MyFrame {
+public class MainScreenFrame extends JFrame {
     private JPanel myPanel;
     private JLabel lb_giris;
     private JButton Button_article;
@@ -16,21 +15,14 @@ public class MyFrame {
 
 
 
-    MyFrame(){
+    public MainScreenFrame(){
 
+        setTitle("SU17AY-SJ");
 
-
-
-        JFrame frame = new JFrame("SU17AY-SJ");
-
-
+        this.add(myPanel);
+        this.setSize(500,500);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         myPanel.setBackground(Color.getColor(null,2222222));
-
-        frame.add(myPanel);
-        frame.setSize(500,500);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-
 
         Button_addwords.addActionListener(new ActionListener() {
             @Override

@@ -3,7 +3,8 @@ public class Main {
     public static void main(String[] args) {
 
 
-        new MyFrame();
+        MainScreenFrame mainScreenFrame =  new MainScreenFrame();
+        mainScreenFrame.setVisible(true);
 
     }
 }
