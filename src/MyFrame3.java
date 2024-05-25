@@ -4,9 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
@@ -18,7 +16,11 @@ public class MyFrame3 extends JFrame{
     private JLabel label3;
     private JLabel label2;
     private JLabel label4;
-    private JButton button;
+    private JButton button_refresh;
+    private JButton button1_true;
+    private JButton button2_true;
+    private JButton button3_true;
+    private JButton button4_true;
 
 
     Random random = new Random();
@@ -35,6 +37,8 @@ public class MyFrame3 extends JFrame{
     String [] yazi ;
 
 
+
+
     public void arrayDoldur(){
 
         labeller = new ArrayList<>();
@@ -43,6 +47,8 @@ public class MyFrame3 extends JFrame{
         labeller.add(label2);
         labeller.add(label3);
         labeller.add(label4);
+
+
 
 
 
@@ -59,8 +65,7 @@ public class MyFrame3 extends JFrame{
             }
 
 
-        } catch (
-                IOException b) {
+        } catch (IOException b) {
             throw new RuntimeException(b);
         }
 
@@ -89,7 +94,13 @@ public class MyFrame3 extends JFrame{
 
     }
 
-        MyFrame3(){
+        MyFrame3() {
+
+
+
+
+            frame2.setVisible(false);
+
 
             label1.setBackground(Color.CYAN);
             label2.setBackground(Color.CYAN);
@@ -101,11 +112,11 @@ public class MyFrame3 extends JFrame{
             label3.setOpaque(true);
             label4.setOpaque(true);
 
-            label1.setPreferredSize(new Dimension(120,30));
-            label2.setPreferredSize(new Dimension(120,30));
-            label3.setPreferredSize(new Dimension(120,30));
-            label4.setPreferredSize(new Dimension(120,30));
-            button.setPreferredSize(new Dimension(100,30));
+            label1.setPreferredSize(new Dimension(120, 30));
+            label2.setPreferredSize(new Dimension(120, 30));
+            label3.setPreferredSize(new Dimension(120, 30));
+            label4.setPreferredSize(new Dimension(120, 30));
+            button_refresh.setPreferredSize(new Dimension(100, 30));
 
             label1.setHorizontalAlignment(JLabel.CENTER);
             label2.setHorizontalAlignment(JLabel.CENTER);
@@ -113,12 +124,20 @@ public class MyFrame3 extends JFrame{
             label4.setHorizontalAlignment(JLabel.CENTER);
 
 
-            myPane.setBackground(Color.getColor(null,22));
+            button1_true.setPreferredSize(new Dimension(10, 5));
+            button3_true.setPreferredSize(new Dimension(10, 5));
+            button2_true.setPreferredSize(new Dimension(10, 5));
+            button4_true.setPreferredSize(new Dimension(10, 5));
+
+
+            myPane.setBackground(Color.getColor(null, 22));
 
 
             this.add(myPane);
-            this.setSize(500,500);
+            this.setSize(500, 500);
             this.setVisible(true);
+            this.setAlwaysOnTop(true);
+
 
             arrayDoldur();
 
@@ -128,17 +147,17 @@ public class MyFrame3 extends JFrame{
                     super.mouseClicked(e);
 
 
-                    if (e.getSource()==label1){
+                    if (e.getSource() == label1) {
 
-                        if (label1.getText().equals(kelimeler.get(0))){
+                        if (label1.getText().equals(kelimeler.get(0))) {
 
                             label1.setText(kelimeler.get(1));
-                        }else{
+                        } else {
 
                             label1.setText(kelimeler.get(0));
                         }
 
-                      }
+                    }
                 }
             });
             label2.addMouseListener(new MouseAdapter() {
@@ -146,13 +165,13 @@ public class MyFrame3 extends JFrame{
                 public void mouseClicked(MouseEvent e) {
                     super.mouseClicked(e);
 
-                    if (e.getSource()==label2){
+                    if (e.getSource() == label2) {
 
 
-                        if (label2.getText().equals(kelimeler.get(2))){
+                        if (label2.getText().equals(kelimeler.get(2))) {
 
                             label2.setText(kelimeler.get(3));
-                        }else{
+                        } else {
 
                             label2.setText(kelimeler.get(2));
                         }
@@ -167,14 +186,12 @@ public class MyFrame3 extends JFrame{
                 public void mouseClicked(MouseEvent e) {
                     super.mouseClicked(e);
 
-                    if (e.getSource()==label3){
+                    if (e.getSource() == label3) {
 
-                        if (label3.getText().equals(kelimeler.get(4))){
+                        if (label3.getText().equals(kelimeler.get(4))) {
 
                             label3.setText(kelimeler.get(5));
-                        }
-
-                        else{
+                        } else {
 
                             label3.setText(kelimeler.get(4));
                         }
@@ -188,32 +205,227 @@ public class MyFrame3 extends JFrame{
                 public void mouseClicked(MouseEvent e) {
                     super.mouseClicked(e);
 
-                    if (e.getSource()==label4){
+                    if (e.getSource() == label4) {
 
 
-                        if (label4.getText().equals(kelimeler.get(6))){
+                        if (label4.getText().equals(kelimeler.get(6))) {
 
                             label4.setText(kelimeler.get(7));
-                        }
-                        else {
+                        } else {
                             label4.setText(kelimeler.get(6));
                         }
 
                     }
                 }
             });
-            button.addActionListener(new ActionListener() {
+            button_refresh.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (e.getSource()==button){
+                    if (e.getSource() == button_refresh) {
 
+                        if (robert.size()<5){
+
+                            JOptionPane.showMessageDialog(null,"Please add words to traning");
+                        }
 
                         arrayDoldur();
                     }
                 }
             });
+            button1_true.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (e.getSource() == button1_true) {
+
+                        ArrayList<String> array = new ArrayList<String>();
+
+                        try (Scanner reader = new Scanner(new BufferedReader(new FileReader("namen.txt")))) {
+
+                            while (reader.hasNext()) {
+
+                                cumle = reader.nextLine();
+
+                                String[] yazi = cumle.split(",");
+
+                                if (!yazi[0].equals(label1.getText())) {
+
+                                    array.add(cumle);
+                                }
+
+                            }
+
+                            PrintWriter pw = new PrintWriter("namen.txt");
+                            pw.close();
+
+                            try( BufferedWriter writer = new BufferedWriter(new FileWriter("namen.txt",true))){
+
+                                for (String str: array){
+
+                                    writer.write(str +"\n");
+
+                                }
+
+
+
+                            } catch (IOException g) {
+                                throw new RuntimeException(g);
+                            }
+
+
+                        }catch (FileNotFoundException exception){
+
+
+                        }
+                    }
+                }
+            });
+
+
+            button2_true.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    if (e.getSource() == button2_true) {
+
+                        ArrayList<String> array = new ArrayList<String>();
+
+                        try (Scanner reader = new Scanner(new BufferedReader(new FileReader("namen.txt")))) {
+
+                            while (reader.hasNext()) {
+
+                                cumle = reader.nextLine();
+
+                                String[] yazi = cumle.split(",");
+
+                                if (!yazi[0].equals(label2.getText())) {
+
+                                    array.add(cumle);
+                                }
+
+                            }
+
+                            PrintWriter pw = new PrintWriter("namen.txt");
+                            pw.close();
+
+                            try( BufferedWriter writer = new BufferedWriter(new FileWriter("namen.txt",true))){
+
+                                for (String str: array){
+
+                                    writer.write(str +"\n");
+
+                                }
+
+
+
+                            } catch (IOException g) {
+                                throw new RuntimeException(g);
+                            }
+
+
+                        }catch (FileNotFoundException exception){
+
+
+                        }
+                    }
+
+
+                }
+            });
+            button3_true.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (e.getSource() == button3_true) {
+
+                        ArrayList<String> array = new ArrayList<String>();
+
+                        try (Scanner reader = new Scanner(new BufferedReader(new FileReader("namen.txt")))) {
+
+                            while (reader.hasNext()) {
+
+                                cumle = reader.nextLine();
+
+                                String[] yazi = cumle.split(",");
+
+                                if (!yazi[0].equals(label3.getText())) {
+
+                                    array.add(cumle);
+                                }
+
+                            }
+
+                            PrintWriter pw = new PrintWriter("namen.txt");
+                            pw.close();
+
+                            try( BufferedWriter writer = new BufferedWriter(new FileWriter("namen.txt",true))){
+
+                                for (String str: array){
+
+                                    writer.write(str +"\n");
+
+                                }
+
+
+
+                            } catch (IOException g) {
+                                throw new RuntimeException(g);
+                            }
+
+
+                        }catch (FileNotFoundException exception){
+
+
+                        }
+                    }
+
+                }
+            });
+            button4_true.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (e.getSource() == button4_true) {
+
+                        ArrayList<String> array = new ArrayList<String>();
+
+                        try (Scanner reader = new Scanner(new BufferedReader(new FileReader("namen.txt")))) {
+
+                            while (reader.hasNext()) {
+
+                                cumle = reader.nextLine();
+
+                                String[] yazi = cumle.split(",");
+
+                                if (!yazi[0].equals(label4.getText())) {
+
+                                    array.add(cumle);
+                                }
+
+                            }
+
+                            PrintWriter pw = new PrintWriter("namen.txt");
+                            pw.close();
+
+                            try( BufferedWriter writer = new BufferedWriter(new FileWriter("namen.txt",true))){
+
+                                for (String str: array){
+
+                                    writer.write(str +"\n");
+
+                                }
+
+
+
+                            } catch (IOException g) {
+                                throw new RuntimeException(g);
+                            }
+
+
+                        }catch (FileNotFoundException exception){
+
+
+                        }
+                    }
+
+                }
+            });
         }
-
-
-
 }
